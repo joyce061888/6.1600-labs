@@ -1,12 +1,21 @@
 Question 1:
 
-A)
+A) AES-128-GMAC is the better choice for encrypting >1MB
+files. HMAC-SHA256 is a hash based authentification that 
+provides data integrity and authentification but does not 
+provide confidentiality through encryption. AES-128-GMAC
+is an autheticated encryption scheme that provides confidentiality
+via encryption and data integrity and authentification. 
 
-B)
+B) It will take roughly 2 times more time to encrypt a 100 MB
+file after increase the key size by two times, with the assumption that 
+there's a linear relationship between key size and encryption time.
+??? but why
 
-C)
+C) RSA - 3072 bit key, DSA - 3072 bit key, ECDSA - 256 bit key
 
-i)
+i) ECDSA is the fastest for signing because of the shorter key length.
+DSA is the slowest for signing because it has fixed key sizes.
 
 ii)
 
