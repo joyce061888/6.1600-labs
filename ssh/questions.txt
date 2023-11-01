@@ -12,15 +12,20 @@ file after increase the key size by two times, with the assumption that
 there's a linear relationship between key size and encryption time.
 ??? but why
 
-C) RSA - 3072 bit key, DSA - 3072 bit key, ECDSA - 256 bit key
+C) 
 
-i) ECDSA is the fastest for signing because of the shorter key length.
-DSA is the slowest for signing because it has fixed key sizes.
+i) RSA - 3072 bit key, DSA - 3072 bit key, ECDSA - 256 bit key
 
-ii)
+ii) ECDSA is the fastest for signing because of the shorter key length and elliptic
+curve cryptography. DSA is the slowest for signing because it has fixed key sizes and thus its less
+flexible balance between security and performance, and because of its complex mod arithmetic.
 
-iii)
+iii) ECDSA is the fastest for signature verification and DSA is the slowest
+with similar reasons provided in part (i). 
 
-iv)
+iv) ECDSA has the fastest keypair generation and DSA has the slowest.
 
-D)
+D) I would use bcrypt because it has automatic salting and the algorithm
+itself is also computationally costly to brute force attack. Bcrypt is also 
+adaptive in that even if hardware becomes more powerful over time, the algorithm can be 
+made slower by a "work factor" that the algorithm can adjust to determine the computation cost.
