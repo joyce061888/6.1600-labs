@@ -29,6 +29,7 @@ def scenario_three():
     r = attack.attack_three()
 
     secret = os.urandom(256)
+    print("actual secret: ", secret)
 
     if type(r) != bytes or r != secret:
         raise Exception("did not return correct secret")
