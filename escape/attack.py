@@ -1,5 +1,10 @@
+import os
+
 def attack_one(guess):
-    return b''
+    secret = os.urandom(256)
+    while not guess(secret):
+        secret = os.urandom(256)
+    return secret
 
 def attack_two():
     return b''
