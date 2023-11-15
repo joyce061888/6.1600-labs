@@ -36,18 +36,12 @@ def attack_three():
     print("attack 3 secret: ", secret)
     return secret
 
-class SecretStore:
-    def __init__(self, secret):
-        self.myself = self
-        self.secret = secret
-        self.msg = 'the secret is %s' % list(secret)   
     
 def attack_four():
+   gc.disable()
    gc.collect()
-
    for trash in gc.get_objects():
-    #    print("trash: ", trash)
-       if isinstance(trash, type) and trash.__name__ == 'SecretStore':
-           init_sig = inspect.signature(trash.__init__)
-           param_items = init_sig.parameters.items()
-           print("guess: ", param_items)
+        # print("trash: ", trash)
+        if hasattr(trash, 'secret'):
+            print(f"Object with msg: {trash.secret}")
+            return trash.secret
