@@ -37,11 +37,21 @@ def attack_three():
     return secret
 
     
+class SecretStore:
+    def __init__(self, secret):
+        self.myself = self
+        self.secret = secret
+        self.msg = 'the secret is %s' % list(secret)
+
 def attack_four():
-   gc.disable()
-   gc.collect()
-   for trash in gc.get_objects():
-        # print("trash: ", trash)
-        if hasattr(trash, 'secret'):
+    gc.disable()
+    gc.collect()
+
+    for trash in gc.get_objects():
+        if isinstance(trash, SecretStore):
             print(f"Object with msg: {trash.secret}")
+            gc.enable()  
             return trash.secret
+
+    gc.enable()  
+    return None
