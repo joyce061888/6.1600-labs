@@ -1,6 +1,7 @@
 import os
 import inspect
 import hashlib
+import gc
 
 def attack_one(guess):
     stack = inspect.stack()
@@ -34,13 +35,19 @@ def attack_three():
     secret = os.urandom(256)
     print("attack 3 secret: ", secret)
     return secret
-    
+
 class SecretStore:
     def __init__(self, secret):
+        self.myself = self
         self.secret = secret
-
-    def get_secret(self):
-        return self.secret
+        self.msg = 'the secret is %s' % list(secret)   
     
 def attack_four():
-   pass
+   gc.collect()
+
+   for trash in gc.get_objects():
+    #    print("trash: ", trash)
+       if isinstance(trash, type) and trash.__name__ == 'SecretStore':
+           init_sig = inspect.signature(trash.__init__)
+           param_items = init_sig.parameters.items()
+           print("guess: ", param_items)

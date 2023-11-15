@@ -42,6 +42,7 @@ class SecretStore:
 
 def scenario_four():
     secret = os.urandom(256)
+    print("actual secret: ", secret)
     store = SecretStore(secret)
     h = hashlib.sha256(secret).digest()
 
