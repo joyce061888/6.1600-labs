@@ -1,0 +1,3 @@
+ln -s ../secret.txt secret_link.txt
+fd_open secret_link.txt
+fd_read 4
