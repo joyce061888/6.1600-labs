@@ -1,0 +1,8 @@
+mkdir A
+cd A
+mkdir B
+fd_open B
+cd ..
+mv ./A/B ./B
+fd_openat 4 ../../secret.txt
+fd_read 5
