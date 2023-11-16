@@ -38,6 +38,8 @@ def check_sandbox():
     h0 = sandbox.sha256(r)
     h1 = hashlib.sha256(r).digest()
 
+    print("actual: ", h1)
+
     if type(h0) != type(h1) or h0 != h1:
         raise Exception("did not return correct hash")
 
